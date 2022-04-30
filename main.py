@@ -14,8 +14,8 @@ testCSV = pd.read_csv("./data/test.csv")
 trainCSV = pd.read_csv("./data/train.csv")
 
 # viewing data
-trainCSV.isnull().sum()
-trainCSV.shape
+#trainCSV.isnull().sum()
+#trainCSV.shape
 
 
 # Clean data
@@ -51,8 +51,8 @@ def cleanText(df):
 cleanText(testCSV)
 cleanText(trainCSV)
 
-print(testCSV.head())
-print(trainCSV.head())
+#print(testCSV.head())
+#print(trainCSV.head())
 
 
 def stemSentence(tweets):
@@ -69,13 +69,43 @@ trainlist = trainCSV["text"].tolist()
 testlist = stemSentence(testlist)
 trainlist = stemSentence(trainlist)
 
-# vectorization process
-count_vectorizer = CountVectorizer()
-train_vectors = count_vectorizer.fit_transform(trainCSV['text'])
-test_vectors = count_vectorizer.transform(testCSV["text"])
+########### vectorization process
 
-# print(train_vectors)
-# print(test_vectors)
+# instantiates the vectorizer,
+count_vectorizer = CountVectorizer(
+    min_df=3, # Takes out words that only appear 3 or less times
+    max_df=0.5 # Takes out words that are in more than 50%, since they add no valuable data
+
+)
+# Fits the vectorized with train data
+train_vectors = count_vectorizer.fit_transform(trainCSV['text'])
+
+# Gets a list of all the words in the vector
+vector_features = count_vectorizer.get_feature_names()
+print("Vector features: ",vector_features) # Prints all the words fit into the in the vectorizer
+print("Feature Counts: ",len(vector_features)) # Prints the amount of words in the vectorizer
+
+# Converts the vectorized data matrix to array
+train_vec_arr = train_vectors.toarray()
+# Puts the vectorized data into the dataframe
+train_vec_dataframe = pd.DataFrame(data=train_vec_arr,columns = vector_features)
+# Combines vector dataframe to train dataframe
+trainCSV = pd.concat([trainCSV, train_vec_dataframe], axis=1, join='inner')
+
+# Exports and prints for viewing
+trainCSV.to_csv("./data/train_vectorized.csv")
+print("Vectorized Train Data:\n\n" ,trainCSV.head())
+
+# Vectorizes the test data
+test_vectors = count_vectorizer.transform(testCSV["text"])
+# Converts the vectorized data matrix to array
+test_vec_arr = test_vectors.toarray()
+# Puts the vectorized data into the dataframe
+test_vec_dataframe = pd.DataFrame(data=test_vec_arr,columns = vector_features)
+# Combines vector dataframe to train dataframe
+testCSV = pd.concat([testCSV, test_vec_dataframe], axis=1, join='inner')
+
+
 
 
 
