@@ -4,10 +4,13 @@ In this project, we applied machine learning models to predict Tweets that are a
 
 ## Data Cleaning 
 
-## Data Visualization
+# Data Modeling 
 
 ## Logistic Regression 
 
 ## Neural Networks
+
+
+
 
 ## Resources used
