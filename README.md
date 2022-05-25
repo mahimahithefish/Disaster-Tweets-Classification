@@ -17,6 +17,10 @@ We first converted the tweets in the training csv data into TF-IDF matrices. TF-
 
 we used SGD (Stochastic Gradient Descent) classifier from the Python sklearn library to train the given tweets. SGD has been applied to large-scale problems encountered in text classification and natural language processing.  In this project, SGD has to be fitted with two arrays as input and output: an array X holding the training tweet's TD- IDF vectors, and an array y holding the target values. After being fitted, the model can then be used to predict new values.
 
+we have recieved an accuracy score of approximately 79% using this model in kaggle. 
+
+![lregscore](lregscore.png)
+
 ### Neural Networks
 
 
