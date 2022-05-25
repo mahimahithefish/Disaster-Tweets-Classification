@@ -21,7 +21,7 @@ we have recieved an accuracy score of approximately 79% using this model in kagg
 
 ![lregscore](lregscore.png)
 
-### Neural Networks
+### XG Boost
 
 
 
