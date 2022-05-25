@@ -23,7 +23,9 @@ we have recieved an accuracy score of approximately 79% using this model in kagg
 ![lregscore](lregscore.png)
 
 ### XG Boost
-We used the XGBRegressor from the xgboost library to train the given tweet. I used 10000 n_estimators, a learning rate of 0.1 and "binary:logistic" objective. The XG boost model got an accuracy of 77.75% on the kaggle submission.
+We used the XGBRegressor from the xgboost library to train the given tweet. This model is an optimized distributed gradient boosting library designed to be highly efficient, flexible and portable. I set the parameters to 10,000 n_estimators, 0.1 learning rate  and "binary:logistic" objective. 
+
+The XG boost model got an accuracy of 77.75% on the kaggle submission.
 
 ## Resources
 -  Kaggle: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/competitions/nlp-getting-started)
