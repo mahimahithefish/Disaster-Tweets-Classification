@@ -10,20 +10,20 @@ All the tweets in our dataset undergone stemming. Stemming is used to simplify e
 
 // discuss location parsing and haskeyword function and vecorization maybe???
 
+###Text Data Extraction
+We first converted the tweets in the training csv data into TF-IDF matrices. TF-IDF stands for term frequency-inverse document frequency and it is a measure that can quantify the importance of string representations in a document. This was done by using the sklearn library. 
+
 ## Data Modeling 
 
 ### Logistic Regression 
-We first converted the tweets in the training csv data into TF-IDF matrices. TF-IDF stands for term frequency-inverse document frequency and it is a measure that can quantify the importance of string representations in a document. This was done by using the sklearn library. 
-
-we used SGD (Stochastic Gradient Descent) classifier from the Python sklearn library to train the given tweets. SGD has been applied to large-scale problems encountered in text classification and natural language processing.  In this project, SGD has to be fitted with two arrays as input and output: an array X holding the training tweet's TD- IDF vectors, and an array y holding the target values. After being fitted, the model can then be used to predict new values.
+We used SGD (Stochastic Gradient Descent) classifier from the Python sklearn library to train the given tweets. SGD has been applied to large-scale problems encountered in text classification and natural language processing.  In this project, SGD has to be fitted with two arrays as input and output: an array X holding the training tweet's TD- IDF vectors, and an array y holding the target values. After being fitted, the model can then be used to predict new values
 
 we have recieved an accuracy score of approximately 79% using this model in kaggle. 
 
 ![lregscore](lregscore.png)
 
 ### XG Boost
-
-
+We used the XGBRegressor from the xgboost library to train the given tweet. I used 10000 n_estimators, a learning rate of 0.1 and "binary:logistic" objective. The XG boost model got an accuracy of 77.75% on the kaggle submission.
 
 ## Resources
 -  Kaggle: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/competitions/nlp-getting-started)
