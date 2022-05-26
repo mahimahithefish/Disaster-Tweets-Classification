@@ -10,7 +10,7 @@ All the tweets in our dataset undergone stemming. Stemming is used to simplify e
 
 // discuss location parsing and haskeyword function and vecorization maybe???
 
-###Text Data Extraction
+### Text Data Extraction
 We first converted the tweets in the training csv data into TF-IDF matrices. TF-IDF stands for term frequency-inverse document frequency and it is a measure that can quantify the importance of string representations in a document. This was done by using the sklearn library. 
 
 ## Data Modeling 
