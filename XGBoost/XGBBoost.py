@@ -27,7 +27,7 @@ X_train, X_valid, y_train, y_valid = train_test_split(X_train_full, y_train_full
 
 XGBmodeltrain = XGBRegressor(
     n_estimators=10000,
-    learning_rate= 0.01,
+    learning_rate= 0.1,
     #eval_metric="error",
     objective="binary:logistic",
     #disable_default_eval_metric=True
@@ -52,5 +52,17 @@ print("Accuracy: ", meanError)
 
 
 testCSV = pd.read_csv("../data/test_model_ready.csv")
+testCSVog = pd.read_csv("../data/testOG.csv")
 
-testData = testCSV.drop(["clean_tweet"])
+testData = testCSV.drop(["clean_tweet", "Unnamed: 0"], axis=1)
+
+predicted = XGBmodeltrain.predict(testData)
+
+for i in range(len(predicted)) :
+    predicted[i] = round(predicted[i])
+
+submission_df = pd.DataFrame({"id": testCSVog.id, "target": predicted})
+
+submission_df['target'] = submission_df['target'].astype('int')
+
+submission_df.to_csv("./submission.csv", index=False)

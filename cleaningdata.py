@@ -9,8 +9,8 @@ from nltk.stem import PorterStemmer
 # importing files
 from sklearn.feature_extraction.text import CountVectorizer
 
-testCSV = pd.read_csv("./data/test.csv")
-trainCSV = pd.read_csv("./data/train.csv")
+testCSV = pd.read_csv("./data/testOG.csv")
+trainCSV = pd.read_csv("./data/trainOG.csv")
 
 # ########## Parses Keyword data
 def keyWordData(df):
@@ -102,22 +102,14 @@ testCSV.to_csv("./data/test.csv")
 train = trainCSV['clean_tweet'].tolist()
 traintarget = trainCSV['target'].tolist()
 
-# Note to J : I don't think now its necessary to have traincleaned.csv file anymore.
-# trainCSV.to_csv("./data/train_cleaned.csv")
+from sklearn.feature_extraction.text import TfidfVectorizer  # Coverts text into TF-ID matrices
+TfidVectorizer = TfidfVectorizer(min_df=3)
 
-
-# ########## vectorization process
-# instantiates the vectorizer,
-count_vectorizer = CountVectorizer(
-    min_df=3,  # Takes out words that only appear 3 or less times
-    max_df=0.5  # Takes out words that are in more than 50%, since they add no valuable data
-
-)
 # Fits the vectorized with train data
-train_vectors = count_vectorizer.fit_transform(trainCSV['text'])
+train_vectors = TfidVectorizer.fit_transform(trainCSV['text'])
 
 # Gets a list of all the words in the vector
-vector_features = count_vectorizer.get_feature_names()
+vector_features = TfidVectorizer.get_feature_names()
 print("Vector features: ", vector_features)  # Prints all the words fit into the in the vectorizer
 print("Feature Counts: ", len(vector_features), "\n\n")  # Prints the amount of words in the vectorizer
 
@@ -131,7 +123,7 @@ trainCSV = pd.concat([trainCSV, train_vec_dataframe], axis=1, join='inner')
 
 
 # Vectorizes the test data
-test_vectors = count_vectorizer.transform(testCSV["text"])
+test_vectors = TfidVectorizer.transform(testCSV["text"])
 # Converts the vectorized data matrix to array
 test_vec_arr = test_vectors.toarray()
 # Puts the vectorized data into the dataframe

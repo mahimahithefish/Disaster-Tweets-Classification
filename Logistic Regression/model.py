@@ -1,8 +1,8 @@
 import pandas as pd
 
 # importing files
-testCSV = pd.read_csv("/Users/tasnimmahi/Desktop/Disaster-Tweets-Classification/data/test.csv")
-trainCSV = pd.read_csv("/Users/tasnimmahi/Desktop/Disaster-Tweets-Classification/data/train.csv")
+testCSV = pd.read_csv("../data/test.csv")
+trainCSV = pd.read_csv("../data/train.csv")
 
 train = trainCSV['clean_tweet'].tolist() # Cleaned data are the inputs
 traintarget = trainCSV['target'].tolist() # the tweet classification is considered as the output
@@ -10,7 +10,7 @@ traintarget = trainCSV['target'].tolist() # the tweet classification is consider
 from sklearn.feature_extraction.text import TfidfVectorizer  # Coverts text into TF-ID matrices
 vectorizer = TfidfVectorizer(min_df=3)
 
-x_train = vectorizer.fit_transform(train)
+x_train = vectorizer.fit_transform(trainCSV)
 x_test = vectorizer.transform(testCSV.clean_tweet)
 
 from sklearn.linear_model import SGDClassifier  # Using SGD model to train the data - Logistic regression
