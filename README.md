@@ -27,9 +27,6 @@ This is pie chart shows the percentage of disaster tweets vs. the non-disaster t
 ![pie](visualizer/pie.png)
 
 
-This bar graph shows the most common words that appear in disaster tweets and non-disaster tweets respectively. 
-
-
 ## Data Modeling 
 
 ### Logistic Regression 
