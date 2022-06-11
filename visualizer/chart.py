@@ -1,7 +1,6 @@
 ## All purpose libraries
 import pandas as pd
 import seaborn as sns
-import csv
 
 train = pd.read_csv("/Users/tasnimmahi/Desktop/Disaster-Tweets-Classification/data/train.csv")
 
@@ -23,17 +22,19 @@ for i in range(len(target)):  # Dividing the cleaned tweets into two groups: dis
         non_dis.append(tweets[i])
 
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+labels= ['Disaster tweets', 'Non-disaster tweet']
 
-# Creating dataset
-tweet_type = ['DISASTER TWEETS', 'NON-DISASTER TWEETS']
+colors=['blue', 'yellow']
 
-data = [len(dis_tweet), len(non_dis)]
+sizes= [len(dis_tweet), len(non_dis)]
 
-# Creating plot
-fig = plt.figure(figsize=(10, 7))
-plt.pie(data, labels=tweet_type)
+plt.pie(sizes,labels=labels, colors=colors, startangle=90, shadow=True,explode=(0.1, 0.1), autopct='%1.2f%%')
 
-# show plot
+plt.title('Tweet Target value distribution')
+
+plt.axis('equal')
+
 plt.show()
+
 
