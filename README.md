@@ -21,6 +21,13 @@ Location was also given as a string, so Ordinal encoded as so:
 ### Text Data Extraction
 We first converted the tweets in the training csv data into TF-IDF matrices. TF-IDF stands for term frequency-inverse document frequency and it is a measure that can quantify the importance of string representations in a document. This was done by using the sklearn library. 
 
+## Data Visualization 
+This is pie chart shows the percentage of disaster tweets vs. the non-disaster tweets in the given data set. The percentages are calculated based on the target values in the train.csv file.
+
+
+This bar graph shows the most common words that appear in disaster tweets and non-disaster tweets respectively. 
+
+
 ## Data Modeling 
 
 ### Logistic Regression 
